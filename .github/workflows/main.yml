@@ -1,0 +1,33 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+    - main
+jobs:
+ pubish:
+  runs-on: ubuntu-latest
+  
+  steps:
+    - uses: actions/@checkut@3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@3
+      with:
+        dotnet-version: '7.0.x'
+        
+    - name: Restore
+      run: dotnet restore ./dockerizeapp.sln
+      
+    - name: Buiild
+      run: dotnet build ./dockerizeapp.sln --configuration Release --no-restore
+      
+    - name: Publish
+      run: dotnet publish ./dockerizeapp.sln --configuration Release --no-build   
+      
+      
+    
+      
+    
+    

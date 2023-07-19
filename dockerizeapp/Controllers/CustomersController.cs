@@ -15,7 +15,10 @@ namespace dockerizeapp.Controllers
         {
             _repository = repository;
         }
-
+        /// <summary>
+        /// My Comment
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<Customer> Get() => _repository.GetCustomers();
          

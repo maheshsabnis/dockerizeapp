@@ -19,7 +19,7 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 //}
-
+// COmment this line for DOcker
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -16,7 +16,7 @@ namespace dockerizeapp.Controllers
             _repository = repository;
         }
         /// <summary>
-        /// My Comment New
+        /// My Comment New App
         /// </summary>
         /// <returns></returns>
         [HttpGet]

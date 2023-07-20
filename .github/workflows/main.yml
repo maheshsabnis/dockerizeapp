@@ -5,6 +5,10 @@ on:
   push:
     branches: 
     - master
+env:
+  AZURE_WEBAPP_NAME: dockerizeapp
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+    
 jobs:
  pubish:
   runs-on: ubuntu-latest
@@ -24,7 +28,14 @@ jobs:
       run: dotnet build ./dockerizeapp.sln --configuration Release --no-restore
       
     - name: Publish
-      run: dotnet publish ./dockerizeapp.sln --configuration Release --no-build   
+      run: dotnet publish ./dockerizeapp.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+      
+    - name: Deployment
+      uses: actions/webpps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }} 
+        publish-profile: ${{ env.AZURE_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} 
       
       
     
